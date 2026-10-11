@@ -1,0 +1,4 @@
+interface:
+  display_name: "Assimilate"
+  short_description: "Adapt useful sources into verified project improvements"
+  default_prompt: "Use $assimilate to integrate the useful capabilities of this source into the current project."
