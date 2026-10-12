@@ -1,6 +1,6 @@
-# Optional REA setup
+# REA and Ghidra setup
 
-Assimilate works with ordinary source and test tools. Install REA when the requested source is a shipped application or the investigation needs its artifact/runtime tools. Keep dependencies external to this repository.
+Use the [complete setup prompt](../SETUP-PROMPT.md) to provision both investigation routes. Source-only use can still install Assimilate alone. Keep engines and upstream skills external to this repository. The verified baseline below targets Codex on macOS; other supported hosts require their own platform and registration checks.
 
 ## Runtime and client
 
@@ -63,3 +63,25 @@ Use an installed supported Chrome executable and an owned, isolated browser prof
 Mitmproxy supports selected network-capture tasks; installing it does not authorize interception or prove capture readiness. Binwalk, Unblob, and pwntools-backed recorded-crash tooling are Linux-specific routes in this setup and were not installed on the tested Mac. Use a compatible host when the actual task requires them. Windows provider and mobile-device behavior need their own checks.
 
 See [verification](verification.md) for measured coverage. For removal, inspect `rea uninstall --help`, preserve unrelated agent settings, and separately manage the npm package and engines through their own package managers. Preserve useful investigation evidence rather than purging it automatically.
+
+## Official pinned engine fallback
+
+If the package manager supplies a version outside the selected REA release's supported range, obtain the prebuilt official [Ghidra12.1.4 release](https://github.com/NationalSecurityAgency/ghidra/releases/tag/Ghidra_12.1.4_build), not a source checkout:
+
+- [ghidra_12.1.4_PUBLIC_20260921.zip](https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1.4_build/ghidra_12.1.4_PUBLIC_20260921.zip)
+- Size: 569649598 bytes.
+- SHA-256: `ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db`.
+
+Verify before extraction; set `GHIDRA_INSTALL_DIR` and `GHIDRA_HOME` to its extracted engine root. Use a full JDK meeting its declared Java requirement. Do not weaken the engine's version properties or OS protections to force compatibility.
+
+## Direct Ghidra skill and shared entry point
+
+For direct exports, install the separately licensed [Ghidra headless skill](https://github.com/mitsuhiko/agent-stuff/tree/0865c849befd2021490679f96a8dee58c84ac857/skills/ghidra) alongside Assimilate. Inspect its actual scripts and retain its Apache-2.0 notices. The tested skill commit is `0865c849befd2021490679f96a8dee58c84ac857`. The upstream prerequisite text mentions an older cask/Java baseline; for this tested setup, use the formula and full JDK21 described above. It is community guidance, not an NSA-authored agent skill.
+
+Use the supported skill-installer with repository `mitsuhiko/agent-stuff`, ref `0865c849befd2021490679f96a8dee58c84ac857`, and path `skills/ghidra`. Retain the [upstream Apache-2.0 LICENSE](https://raw.githubusercontent.com/mitsuhiko/agent-stuff/0865c849befd2021490679f96a8dee58c84ac857/LICENSE) alongside the installed skill. Ensure `scripts/find-ghidra.sh` and `scripts/ghidra-analyze.sh` are executable. The upstream wrapper invokes the discovery script directly, so merely running the outer script with bash is insufficient when an installer drops execute bits.
+
+Assimilate's helper exports `GHIDRA_HOME` for the upstream discovery script, so the pinned unmodified community skill works with the Homebrew formula without requiring the earlier local discovery patch. Raw commands outside Assimilate should set the engine/Java environment explicitly.
+
+Assimilate v0.3.0 routes to both upstream skills automatically for the relevant software task. `scripts/investigate.sh rea ...` forwards to the installed REA CLI with discovered Ghidra/Java paths; `scripts/investigate.sh ghidra ...` calls the installed Ghidra skill. Explicit environment values take precedence. The helper changes no persistent configuration and installs nothing. Use absolute resolved skill paths. If skills use different roots, set `ASSIMILATE_GHIDRA_SKILL_DIR` to the installed Ghidra skill directory.
+
+REA 6.4.0 was available at the npm registry on 13 October 2026. This integration retains the verified, working 6.3.0 runtime and aligned v34 skill; an upgrade is a separate reviewed runtime/skill operation. The baseline author verified live tool visibility and fixture execution on 13 October 2026. A recipient must perform their own registration/reload and live check.

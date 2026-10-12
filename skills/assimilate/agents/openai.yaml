@@ -1,4 +1,4 @@
 interface:
   display_name: "Assimilate"
-  short_description: "Adapt useful sources into verified project improvements"
-  default_prompt: "Use $assimilate to integrate the useful capabilities of this source into the current project."
+  short_description: "Assimilate software with REA and Ghidra tools"
+  default_prompt: "Use $assimilate to investigate this software with the linked REA and Ghidra skills, adapt the requested capability into the current project, and verify the result."

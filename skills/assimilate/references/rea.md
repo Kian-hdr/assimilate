@@ -4,16 +4,33 @@ REA is the investigation layer; Assimilate owns source-to-target adaptation and 
 
 ## Select the route
 
-Read the installed `reverse-engineer-anything` skill when available, normally at `~/.agents/skills/reverse-engineer-anything/SKILL.md`. Follow only its relevant supporting guide. Use the actual connected server schemas: repository main can be newer than the npm release. Do not import a newer upstream skill independently of its runtime and advertise alignment.
+Read the installed `reverse-engineer-anything` skill when available, normally at `~/.agents/skills/reverse-engineer-anything/SKILL.md`. For direct headless exports, read the installed `ghidra` skill, normally at `~/.codex/skills/ghidra/SKILL.md`. Resolve the current skill location from the host catalogue or installed directories rather than assuming a plugin version. Follow only its relevant supporting guide. Use the actual connected server schemas: repository main can be newer than the npm release. Do not import a newer upstream skill independently of its runtime and advertise alignment.
 
 - Complete source repository: inspect source and tests directly. Do not run REA diagnostics merely because the task says assimilate.
 - JavaScript/Electron directory or ASAR: use `analyze_javascript_application`; CLI fallback is `rea analyze-javascript-application /absolute/path/to/app --json`.
-- Native binary or application bundle: use `open_binary` and focused string/symbol/xref/function analysis through an available native provider.
+- Native binary or application bundle: use connected REA `open_binary` with `provider_id: "ghidra"` when Ghidra is the intended engine, then focused string/symbol/xref/function analysis. Resolve names in that provider: Mach-O names may retain a leading underscore. REA sessions are ephemeral; preserve useful Evidence before closing.
+- Direct Ghidra exports or a retained analysis project: use the installed `ghidra` skill. Select only the required exporters; use `--keep-project` when database retention is requested. This route supplements REA rather than requiring a second MCP server.
 - Managed assembly, Android package, archives, firmware or runtime: use the matching upstream guide and advertised tool. Check host/provider requirements for that route only.
 
 When tools are missing, distinguish session connection from registration and provider availability. `rea doctor --client codex --skill --json` checks configuration; `rea mcp doctor --json` tests a separate stdio session. Neither proves that the current chat is connected. An aligned registration may need a client restart. A native-engine failure does not block static JavaScript analysis. Prefer an existing CLI while reconnecting; do not repeatedly run setup or install unrelated engines.
 
 For a necessary registration repair, inspect `rea setup --client codex --dry-run --json`, preserve unrelated configuration and prepare recovery, then apply the same authorized scope with `--yes`. Existing user authorization governs routine installation; retain mandatory host/tool controls. Installation of a companion engine is a separate task choice, not automatic permission to buy a license or activate runtime capture.
+
+## Connected execution routes
+
+Skill instructions route the agent to tools; they do not themselves grant access or start a server. Prefer the already connected REA MCP for interactive investigation. If tools are absent, use the installed CLI while reporting any live connection gap.
+
+The original helper [../scripts/investigate.sh](../scripts/investigate.sh) bridges a terminal's missing Ghidra/Java environment without changing shell profiles or client configuration. It preserves explicit environment overrides, finds a Homebrew Ghidra formula, and selects a full Homebrew JDK 21 when no Java home was supplied. Run it by its actual installed absolute path:
+
+```bash
+# Replace <skill-dir> and target with resolved absolute paths.
+bash <skill-dir>/scripts/investigate.sh rea function /path/to/binary --procedure _function --provider ghidra --format json
+bash <skill-dir>/scripts/investigate.sh ghidra -s ExportDecompiled.java -o /path/to/output /path/to/binary
+```
+
+The `rea` route forwards all arguments to the installed REA CLI. The `ghidra` route invokes the separate installed Ghidra skill's `scripts/ghidra-analyze.sh`; it does not vendor an engine or silently install one. Set `ASSIMILATE_GHIDRA_SKILL_DIR` only when the skill lives outside the sibling skill directory. Set `GHIDRA_INSTALL_DIR`, `GHIDRA_HOME`, or `JAVA_HOME` for another compatible engine/JDK. Missing dependencies fail with an actionable message. REA accepts file and provider arguments according to its installed `--help`/`--schema`; do not infer command names from MCP names.
+
+Official engine: [NSA Ghidra](https://github.com/NationalSecurityAgency/ghidra), Apache-2.0. The separately installed [community headless skill](https://github.com/mitsuhiko/agent-stuff/tree/main/skills/ghidra) is also Apache-2.0 and retains its own license. REA is MIT. No upstream code or binary is copied into Assimilate by these routes.
 
 ## Carry evidence into adaptation
 
