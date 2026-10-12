@@ -4,19 +4,18 @@ An agent skill for turning useful external sources into verified improvements in
 
 Assimilate examines a codebase, tool, skill, document, or workflow, identifies what fits your target, and guides a selective adaptation. It preserves provenance and reuse obligations, tests the result through the destination's real entry point, and leaves an update/removal handoff. Analysis-only requests produce findings without changing the target.
 
-**Skill version:** 0.2.0 · **License:** MIT · **Host:** Codex skills, with ordinary file, search, shell, browser, and test tools as needed.
+**Skill version:** 0.3.0 · **License:** MIT · **Host:** Codex skills, with ordinary file, search, shell, browser, and test tools as needed.
 
 ## Install
 
-Give your agent this request:
+For the complete software-analysis stack, copy the [full setup prompt](SETUP-PROMPT.md) into your agent. It installs and connects **Assimilate**, **REA and its matching skill**, **Ghidra**, and the **Ghidra headless skill**, then verifies both routes. The tested baseline is Codex on macOS.
 
 ```text
-Use the skill-installer workflow to install the assimilate skill from
-https://github.com/Kian-hdr/assimilate/tree/main/skills/assimilate.
-Preserve any existing installation and validate the installed skill.
+Read https://github.com/Kian-hdr/assimilate/blob/main/SETUP-PROMPT.md
+and carry out the complete Assimilate, REA and Ghidra setup described there.
 ```
 
-For a guided installation with optional REA setup, use the copy-ready [setup prompt](SETUP-PROMPT.md). Provider prerequisites and portable macOS instructions are in [REA setup](docs/rea-setup.md).
+For Assimilate alone, use your supported skill installer with repository `Kian-hdr/assimilate` and path `skills/assimilate`. [Setup details](docs/rea-setup.md) distinguish the engine, supporting skills, CLI environment and live MCP registration.
 
 The standard Codex skill installer accepts:
 
@@ -42,14 +41,17 @@ Deliver findings and a source-to-target map for our project; do not implement ye
 
 Provide the source, destination, desired capability, and material constraints. A named current project can supply the destination. A bare “assimilate” does not identify an arbitrary target or authorize bulk ingestion.
 
-## Assimilate and REA
+## Assimilate, REA and Ghidra
 
 | Component | Role |
 | --- | --- |
 | Assimilate | Chooses what to adopt, adapts it to the destination, preserves provenance, and verifies the integration. |
-| [REA](https://github.com/morluto/rea) | Investigates shipped applications, binaries, JavaScript/Electron artifacts, and requested runtime behavior when source inspection is insufficient. |
+| [REA](https://github.com/morluto/rea) and its `reverse-engineer-anything` skill | Investigates shipped applications, binaries, JavaScript/Electron artifacts, and requested runtime behavior. Uses the configured Ghidra engine for native analysis. |
+| [NSA Ghidra](https://github.com/NationalSecurityAgency/ghidra) and the [community headless skill](https://github.com/mitsuhiko/agent-stuff/tree/main/skills/ghidra) | Native disassembly/decompilation through REA, or direct headless exports and retained projects through the Ghidra skill. |
 
 Complete source repositories usually need ordinary source and test tools. REA is optional. This repository includes an original [REA adapter](skills/assimilate/references/rea.md), not REA's runtime, upstream skill, analysis engines, or copied upstream implementation.
+
+Say "Assimilate software" or invoke `$assimilate`; it loads the linked investigation guidance when needed. Supply the software and destination project, or let the current project provide the destination. The original [investigation helper](skills/assimilate/scripts/investigate.sh) makes both CLI routes discover the local Ghidra/Java environment. Connected REA MCP remains the preferred interactive route. The engines and upstream skills stay separately managed; installing Assimilate alone does not install them.
 
 ### Optional REA setup
 
@@ -91,7 +93,7 @@ For skill updates, preserve the existing folder before replacement and run the s
 - [Codex UI metadata](skills/assimilate/agents/openai.yaml)
 - [REA investigation adapter](skills/assimilate/references/rea.md)
 - [Setup prompt](SETUP-PROMPT.md)
-- [Optional REA setup](docs/rea-setup.md)
+- [REA and Ghidra setup](docs/rea-setup.md)
 - [Verification and coverage limits](docs/verification.md)
 - [MIT license](LICENSE)
 

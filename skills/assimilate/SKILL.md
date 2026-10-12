@@ -1,12 +1,18 @@
 ---
 name: assimilate
-description: Examine an external codebase, tool, skill, document, or workflow and adapt its useful capabilities into an identified project or knowledge system. Use for requests to assimilate, absorb, port, or integrate source material. Includes evidence-led adaptation of shipped applications with REA when source alone is insufficient. Ordinary summaries and unrelated installs do not require this workflow.
+description: Examine an external codebase, tool, skill, document, or workflow and adapt its useful capabilities into an identified project or knowledge system. Use for "Assimilate software" and requests to assimilate, absorb, port, or integrate source material. Includes evidence-led adaptation of shipped applications with REA and Ghidra when source alone is insufficient. Ordinary summaries and unrelated installs do not require this workflow.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 # Assimilate
 
 Turn a source into a verified improvement in the user's target. Understanding the source is an intermediate result; integration is the outcome when the user requests it. For analysis-only requests, deliver findings without modifying the target.
+
+## Main entry point for software assimilation
+
+Treat "Assimilate software" as an invocation of this skill. Assimilate coordinates the installed `reverse-engineer-anything` and `ghidra` skills and their software tools; the user does not need to invoke them separately. Read [references/rea.md](references/rea.md) for shipped software, tool routing and repository links, then load the upstream skill for the route actually needed. REA provides interactive artifact investigation and uses Ghidra as a native engine; the Ghidra skill provides direct exports and retained projects. Reuse working installations and the connected tools. Inspect source repositories directly when their code answers the question.
+
+Use the supplied source and current project as context. If the phrase alone leaves the software or destination unidentified, resolve available project context and ask only for the missing target; never analyze an arbitrary application. Investigation feeds this skill's adaptation and destination-verification steps below.
 
 ## Resolve the assignment
 
@@ -22,9 +28,9 @@ Use the host's available file, search, browser, shell, and test tools. This skil
 - For documents and knowledge, extract claims with sources, dates, uncertainty and contradictions. Preserve useful evidence; ingestion does not establish truth.
 - Separate reusable capability from incidental UI, infrastructure, credentials, telemetry, branding, and unrelated features. Do not transfer secrets or private source material into a destination with wider visibility.
 
-## Investigate shipped software with REA when needed
+## Investigate shipped software with REA and Ghidra when needed
 
-When the source is a shipped binary, application package, Electron/JavaScript artifact, or requested runtime behavior, read [references/rea.md](references/rea.md). Use REA to establish the relevant behavior, then return to this workflow to choose, implement and verify the target adaptation. Complete source-repository analysis normally needs only ordinary repository tools; REA is optional and does not replace destination acceptance tests.
+When the source is a shipped binary, application package, Electron/JavaScript artifact, or requested runtime behavior, read [references/rea.md](references/rea.md). Use the connected REA tools with Ghidra for native analysis, or the installed Ghidra skill for direct headless exports. The adapter provides both routes and a CLI helper that discovers the Ghidra/Java environment. Read the installed upstream guidance for the chosen route, establish the relevant behavior, then return to this workflow to choose, implement and verify the target adaptation. Complete source-repository analysis normally needs only ordinary repository tools; REA is optional and does not replace destination acceptance tests.
 
 ## Choose and implement the fit
 
