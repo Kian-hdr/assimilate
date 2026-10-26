@@ -4,10 +4,10 @@ Use the [complete setup prompt](../SETUP-PROMPT.md) to provision both investigat
 
 ## Runtime and client
 
-The verified baseline is npm `rea-agents@6.3.0` and its matching bundled `reverse-engineer-anything` skill v34. Node.js must satisfy `^22.19.0 || ^24.11.0 || >=26.0.0` for this release. Skill and runtime versions use different schemes.
+The verified baseline is npm `rea-agents@6.8.0` and its matching bundled `reverse-engineer-anything` skill v49. Node.js must satisfy `^22.23.4 || ^24.22.1 || >=26.12.1` for this release. Skill and runtime versions use different schemes.
 
 ```bash
-npm install --global rea-agents@6.3.0
+npm install --global rea-agents@6.8.0
 rea setup --client codex --dry-run --format json
 rea setup --client codex --yes
 rea doctor --client codex --skill --format json
@@ -46,7 +46,7 @@ REA's Android adapter requires the separate **jadx-headless-mcp v0.7.1** JAR and
 
 Set `REA_JADX_MCP_JAR` to its absolute local path in the MCP registration environment; select the full JDK with `JAVA_HOME`. This adapter does not download the JAR during analysis, and ordinary REA setup does not configure it automatically. The headless project is [Apache-2.0 licensed](https://github.com/1013503897/jadx-headless-mcp/blob/v0.7.1/LICENSE); retain applicable notices if redistributing it. No JAR or APK is vendored here.
 
-Homebrew `jadx` and this headless MCP JAR are different integration surfaces. Installing the former does not satisfy `REA_JADX_MCP_JAR`. Apktool is a companion resource-decoding tool, but `decode-android-resources` is unavailable in REA 6.3.0: the tested CLI returned `COMMAND_NOT_FOUND`. Newer repository guidance is not evidence of released-package support. ADB supports device tasks. Neither proves the Android adapter is ready. Static APK analysis does not require an emulator or device and does not execute the APK.
+Homebrew `jadx` and this headless MCP JAR are different integration surfaces. Installing the former does not satisfy `REA_JADX_MCP_JAR`. At the original REA6.3.0 baseline, `decode-android-resources` returned `COMMAND_NOT_FOUND`. That historical result does not describe6.8.0 capability; inspect the selected runtime schema and validate the Android route before claiming readiness. Apktool remains a separate companion tool. ADB supports device tasks. Neither proves the Android adapter is ready. Static APK analysis does not require an emulator or device and does not execute the APK.
 
 For a public fixture, Appium ApiDemos v6.0.18 is available from [Appium's release](https://github.com/appium/android-apidemos/releases/tag/v6.0.18), with [Apache-2.0 source](https://github.com/appium/android-apidemos). The tested APK digest was:
 
@@ -85,3 +85,11 @@ Assimilate's helper exports `GHIDRA_HOME` for the upstream discovery script, so 
 Assimilate v0.3.0 routes to both upstream skills automatically for the relevant software task. `scripts/investigate.sh rea ...` forwards to the installed REA CLI with discovered Ghidra/Java paths; `scripts/investigate.sh ghidra ...` calls the installed Ghidra skill. Explicit environment values take precedence. The helper changes no persistent configuration and installs nothing. Use absolute resolved skill paths. If skills use different roots, set `ASSIMILATE_GHIDRA_SKILL_DIR` to the installed Ghidra skill directory.
 
 REA 6.4.0 was available at the npm registry on 13 October 2026. This integration retains the verified, working 6.3.0 runtime and aligned v34 skill; an upgrade is a separate reviewed runtime/skill operation. The baseline author verified live tool visibility and fixture execution on 13 October 2026. A recipient must perform their own registration/reload and live check.
+
+## REA 6.8 compatibility
+
+The6.8.0 package requires Node `^22.23.4 || ^24.22.1 || >=26.12.1`. Where the normal Node runtime is older, keep a compatible runtime isolated and register REA with its explicit Node executable and script path; do not upgrade unrelated application toolchains solely for this integration. Follow the selected package's setup plan and verify `doctor` against the same executable.
+
+MCP `analyze_function` now defaults to a retained summary. Request `detail: "complete"` when a consumer requires the former complete inline evidence. For JavaScript CLI summary mode, preserve complete evidence with `--evidence_output`; a summary is not the complete dossier. Use current live schemas rather than copying old command/output assumptions.
+
+After upgrade, a pre-existing chat may keep its old server process. Compare actual `binary_session` server identity with the intended package and reconnect through the host when needed. Separate stdio doctor and CLI checks do not prove that old chats reconnected. Do not kill unrelated clients or provider work to force a refresh.

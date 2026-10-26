@@ -44,3 +44,11 @@ Fixture tests establish these bounded static routes only. No production binary, 
 ## Fresh supporting-skill installation, 13 October 2026
 
 A separate recipient-style check used the official skill-installer to download the pinned, unmodified community Ghidra skill into an isolated temporary skill root alongside a copy of Assimilate. The documented license and execute-bit steps were applied. Assimilate's helper ran the fresh Ghidra wrapper successfully and exported the expected arithmetic and test caller. This verifies that the public integration does not depend on the baseline author's local Ghidra skill patch. Existing Ghidra/Java were reused; a clean operating-system installation was not tested. The complete setup prompt was independently reviewed for component installation, scoped registration, runtime/skill alignment and live-session limits.
+
+## v0.3.1 integration, 27 October 2026
+
+REA6.8.0, bundled upstream skill49 and isolated Node26.12.1 were installed on the macOS host. Scoped Codex registration/skill doctor passed. A fresh production stdio MCP session initialized protocol2025-11-25, reported exactly229tools/6prompts, matching package/catalog identity, and completed the target-free `binary_session` request.
+
+The installed Assimilate helper returned6.8.0 and successfully reconstructed a synthetic two-file CommonJS application without executing its source. The evidence explicitly retains static-analysis limits. Through the same helper, scoped Ghidra readiness passed for12.1.4/fullJDK21; this upgrade check did not rerun native decompilation or Android/browser capture.
+
+The already-open chat's server reported6.3.0 and `mcp_server_restart_required`; it was not silently described as upgraded. The normal Node runtime remains unchanged. No private artifacts, account configuration or investigation evidence are bundled in this repository.
