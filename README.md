@@ -4,7 +4,7 @@ An agent skill for turning useful external sources into verified improvements in
 
 Assimilate examines a codebase, tool, skill, document, or workflow, identifies what fits your target, and guides a selective adaptation. It preserves provenance and reuse obligations, tests the result through the destination's real entry point, and leaves an update/removal handoff. Analysis-only requests produce findings without changing the target.
 
-**Skill version:** 0.3.0 · **License:** MIT · **Host:** Codex skills, with ordinary file, search, shell, browser, and test tools as needed.
+**Skill version:** 0.3.1 · **License:** MIT · **Host:** Codex skills, with ordinary file, search, shell, browser, and test tools as needed.
 
 ## Install
 
@@ -55,12 +55,12 @@ Say "Assimilate software" or invoke `$assimilate`; it loads the linked investiga
 
 ### Optional REA setup
 
-The adapter was prepared against `rea-agents` **6.3.0**, whose bundled upstream skill identifies itself as **v34**. These are separate version schemes. The published package declares Node.js `^22.19.0 || ^24.11.0 || >=26.0.0`. Check the package and upstream installation guidance when choosing a newer release.
+The current adapter was checked against `rea-agents` **6.8.0**, whose bundled upstream skill identifies itself as **v49**. These are separate version schemes. The published package declares Node.js `^22.23.4 || ^24.22.1 || >=26.12.1`. Check the package and upstream installation guidance when choosing a newer release.
 
 With a compatible Node.js/npm installation:
 
 ```bash
-npm install --global rea-agents@6.3.0
+npm install --global rea-agents@6.8.0
 rea setup --client codex --dry-run --format json
 rea setup --client codex --yes
 rea doctor --client codex --skill --format json

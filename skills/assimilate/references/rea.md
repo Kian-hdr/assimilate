@@ -45,3 +45,7 @@ Add the relevant findings to Assimilate's source-to-target map. Distinguish obse
 ## Maintenance
 
 Keep runtime and upstream skill upgrades aligned through scoped REA setup. Recheck current release, license and schemas when upgrading; do not assume that equal version strings imply equal source bytes. Removing this optional adapter means removing its routing paragraph and this reference; upstream REA remains independently managed. Use REA's current scoped uninstall help to remove its registration or CLI, preserving unrelated client settings.
+
+## REA6.8 output compatibility
+
+Checked with6.8.0 and its bundled skill49. MCP `analyze_function` defaults to a retained summary; request `detail: "complete"` for consumers requiring complete inline evidence, or retain and page the full referenced evidence. JavaScript CLI summary delivery requires `--evidence_output`. Inspect current schemas before adapting an existing output parser. Match the actual connected server identity; existing chats can retain an older process after local upgrade.

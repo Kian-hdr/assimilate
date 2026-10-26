@@ -2,7 +2,7 @@
 name: assimilate
 description: Examine an external codebase, tool, skill, document, or workflow and adapt its useful capabilities into an identified project or knowledge system. Use for "Assimilate software" and requests to assimilate, absorb, port, or integrate source material. Includes evidence-led adaptation of shipped applications with REA and Ghidra when source alone is insufficient. Ordinary summaries and unrelated installs do not require this workflow.
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 # Assimilate
 
