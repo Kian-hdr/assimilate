@@ -6,6 +6,12 @@ Assimilate examines a codebase, tool, skill, document, or workflow, identifies w
 
 **Skill version:** 0.3.1 · **License:** MIT · **Host:** Codex skills, with ordinary file, search, shell, browser, and test tools as needed.
 
+<!-- direct-downloads -->
+[![Download skill ZIP](https://img.shields.io/badge/Download%20skill%20ZIP-24292F?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Kian-hdr/assimilate/releases/download/v0.3.1/assimilate_0.3.1.zip)
+
+[Download skill ZIP](https://github.com/Kian-hdr/assimilate/releases/download/v0.3.1/assimilate_0.3.1.zip) · [Release v0.3.1](https://github.com/Kian-hdr/assimilate/releases/tag/v0.3.1)
+<!-- /direct-downloads -->
+
 ## Install
 
 For the complete software-analysis stack, copy the [full setup prompt](SETUP-PROMPT.md) into your agent. It installs and connects **Assimilate**, **REA and its matching skill**, **Ghidra**, and the **Ghidra headless skill**, then verifies both routes. The tested baseline is Codex on macOS.
