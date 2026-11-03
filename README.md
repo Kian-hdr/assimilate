@@ -6,11 +6,15 @@ Assimilate examines a codebase, tool, skill, document, or workflow, identifies w
 
 **Skill version:** 0.3.1 · **License:** MIT · **Host:** Codex skills, with ordinary file, search, shell, browser, and test tools as needed.
 
-<!-- direct-downloads -->
-[![Download skill ZIP](https://img.shields.io/badge/Download%20skill%20ZIP-24292F?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Kian-hdr/assimilate/releases/download/v0.3.1/assimilate_0.3.1.zip)
+## Download
 
-[Download skill ZIP](https://github.com/Kian-hdr/assimilate/releases/download/v0.3.1/assimilate_0.3.1.zip) · [Release v0.3.1](https://github.com/Kian-hdr/assimilate/releases/tag/v0.3.1)
-<!-- /direct-downloads -->
+<p>
+<a href="https://github.com/Kian-hdr/assimilate/releases/download/v0.3.1/assimilate_0.3.1.zip"><img src="docs/assets/downloads/download_1.svg" width="240" height="48" alt="Download ZIP"></a>
+</p>
+
+[skill ZIP · v0.3.1](https://github.com/Kian-hdr/assimilate/releases/download/v0.3.1/assimilate_0.3.1.zip)
+
+[Release notes](https://github.com/Kian-hdr/assimilate/releases/tag/v0.3.1)
 
 ## Install
 
