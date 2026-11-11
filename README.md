@@ -1,4 +1,4 @@
-# Assimilate
+<p align="center"><strong>Assimilate</strong></p>
 
 An agent skill for turning useful external sources into verified improvements in an existing project.
 
@@ -6,9 +6,7 @@ Assimilate examines a codebase, tool, skill, document, or workflow, identifies w
 
 **Skill version:** 0.3.1 · **License:** MIT · **Host:** Codex skills, with ordinary file, search, shell, browser, and test tools as needed.
 
-## Download
-
-<p>
+<p align="center">
 <a href="https://github.com/Kian-hdr/assimilate/releases/download/v0.3.1/assimilate_0.3.1.zip"><img src="docs/assets/downloads/download_1.svg" width="240" height="48" alt="Download ZIP"></a>
 </p>
 
